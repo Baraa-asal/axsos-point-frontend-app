@@ -26,6 +26,7 @@ import Tables from "layouts/tables";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import UploadImage from "layouts/authentication/upload-image";
 import Attendance from "layouts/tables/attendance";
 import AttendanceRecord from "layouts/tables/attendance-record";
 import Shop from "examples/Icons/Shop";
@@ -118,6 +119,15 @@ const routes = [
     component: <SignUp />,
     isProtected: true,
     role: "admin",
+    isProtected: true,
+    role: 'admin'
+  },
+  {
+    key: "upload-image",
+    route: "/authentication/upload-image/:id",
+    component: <UploadImage />,
+    // isProtected: true,
+    role: 'admin'
   },
 ];
 

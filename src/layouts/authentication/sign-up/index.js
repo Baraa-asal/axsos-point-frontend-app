@@ -1,0 +1,115 @@
+import { useState } from "react";
+import axios from "axios";
+// react-router-dom components
+
+// @mui material components
+import Card from "@mui/material/Card";
+
+// Soft UI Dashboard React components
+import SoftBox from "components/SoftBox";
+import SoftInput from "components/SoftInput";
+import SoftButton from "components/SoftButton";
+
+// Authentication layout components
+import BasicLayout from "layouts/authentication/components/BasicLayout";
+
+// Images
+import curved6 from "assets/images/curved-images/curved14.jpg";
+import SoftTypography from "components/SoftTypography";
+
+function SignUp() {
+  const [formInfo, setFormInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  
+  const [errors, setErrors] = useState(undefined);
+  const register = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/register`, formInfo, {
+        withCredentials: true,
+      })
+      .then((res) => console.log(res)).catch((e)=> {
+        if (e?.response?.data?.errors) {
+        setErrors(e?.response?.data?.errors)
+      } else {
+        console.log(e)
+        // if (keyPattern) {
+
+        // }
+      }
+      
+      });
+  };
+  const errorFontSize = "14px"
+  const handleChange = (e) => {
+    console.log("hii");
+    console.log({ ...formInfo, [e.target.name]: e.target.value });
+    setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
+  };
+  console.log("errors: ",errors?.confirmPassword)
+  return (
+    <BasicLayout  title="Add a new Ninja" image={curved6}>
+      <Card>
+        <SoftBox pt={2} pb={3} px={3}>
+          <SoftBox component="form" role="form">
+      
+            <SoftBox mb={2}>
+              <SoftInput onChange={handleChange} name="firstName" placeholder="First Name" /> 
+              {
+                errors?.firstName  ? (<SoftTypography color="error"  fontSize={errorFontSize} mb={2}>{errors.firstName.message}</SoftTypography>) : null 
+              }
+            </SoftBox>
+            <SoftBox mb={2}>
+              <SoftInput onChange={handleChange} name="lastName" placeholder="Last Name" />
+              {
+                errors?.lastName  ? (<SoftTypography color="error"  fontSize={errorFontSize} mb={2}>{errors.lastName.message}</SoftTypography>) : null 
+              }
+            </SoftBox>
+            <SoftBox mb={2}>
+              <SoftInput onChange={handleChange} name="email" type="email" placeholder="Email" />
+              {
+                errors?.email  ? (<SoftTypography color="error"  fontSize={errorFontSize} mb={2}>{errors.email.message}</SoftTypography>) : null 
+              }
+            </SoftBox>
+            <SoftBox mb={2}>
+              <SoftInput
+                onChange={handleChange}
+                name="password"
+                type="password"
+                placeholder="Password"
+              />
+                  {
+                errors?.password  ? (<SoftTypography color="error"  fontSize={errorFontSize} mb={2}>{errors.password.message}</SoftTypography>) : null 
+              }
+            </SoftBox>
+            <SoftBox mb={2}>
+              <SoftInput
+                onChange={handleChange}
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+              />
+                  {
+                errors?.confirmPassword  ? (<SoftTypography color="error" fontSize={errorFontSize} mb={2}>{errors.confirmPassword.message}</SoftTypography>) : null 
+              }
+            </SoftBox>
+            <SoftBox display="flex" alignItems="center"></SoftBox>
+            <SoftBox mt={4} mb={1}>
+              <SoftButton onClick={register} variant="gradient" color="dark" fullWidth>
+                add ninja
+              </SoftButton>
+            </SoftBox>
+          </SoftBox>
+        </SoftBox>
+      </Card>
+    </BasicLayout>
+  );
+}
+
+export default SignUp;

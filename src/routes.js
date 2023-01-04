@@ -21,12 +21,14 @@
 */
 
 import Dashboard from "layouts/dashboard";
+import Document from "examples/Icons/Document";
 import Tables from "layouts/tables";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import UploadImage from "layouts/authentication/upload-image";
 import Attendance from "layouts/tables/attendance";
+import AttendanceRecord from "layouts/tables/attendance-record";
 import Shop from "examples/Icons/Shop";
 import Office from "examples/Icons/Office";
 import CustomerSupport from "examples/Icons/CustomerSupport";
@@ -42,7 +44,7 @@ const routes = [
     component: <Dashboard />,
     noCollapse: true,
     isProtected: true,
-    role: ''
+    role: "",
   },
   {
     type: "collapse",
@@ -53,7 +55,7 @@ const routes = [
     component: <Tables />,
     noCollapse: true,
     isProtected: true,
-    role: 'admin'
+    role: "admin",
   },
 
   {
@@ -65,7 +67,7 @@ const routes = [
     component: <Tables />,
     noCollapse: true,
     isProtected: true,
-    role: 'admin'
+    role: "admin",
   },
 
   {
@@ -73,11 +75,22 @@ const routes = [
     name: "Attendance",
     key: "attendance",
     route: "/attendance",
-    icon: <Cube size="12px" />,
+    icon: <Document size="12px" />,
     component: <Attendance />,
     noCollapse: true,
     isProtected: true,
-    role: 'admin'
+    role: "student",
+  },
+  {
+    type: "collapse",
+    name: "Attendance Record",
+    key: "attendance-record",
+    route: "/attendance-record",
+    icon: <Shop size="12px" />,
+    component: <AttendanceRecord />,
+    noCollapse: true,
+    isProtected: true,
+    role: "admin",
   },
 
   { type: "title", title: "Account Pages", key: "account-pages" },
@@ -90,7 +103,7 @@ const routes = [
     component: <Profile />,
     noCollapse: true,
     isProtected: true,
-    role: ''
+    role: "student",
   },
   {
     key: "sign-in",
@@ -98,13 +111,15 @@ const routes = [
     component: <SignIn />,
     noCollapse: true,
     isProtected: false,
-    role: ''
+    role: "",
   },
   {
     key: "sign-up",
     route: "/authentication/sign-up",
     component: <SignUp />,
-    // isProtected: true,
+    isProtected: true,
+    role: "admin",
+    isProtected: true,
     role: 'admin'
   },
   {

@@ -104,14 +104,14 @@ const routes = [
     key: "sign-up",
     route: "/authentication/sign-up",
     component: <SignUp />,
-    isProtected: true,
+    // isProtected: true,
     role: 'admin'
   },
   {
-    key: "sign-up",
-    route: "/authentication/upload-image",
+    key: "upload-image",
+    route: "/authentication/upload-image/:id",
     component: <UploadImage />,
-    isProtected: true,
+    // isProtected: true,
     role: 'admin'
   },
 ];

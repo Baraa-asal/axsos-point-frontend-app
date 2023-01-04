@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import axios from "axios";
 // react-router-dom components
-
+import { useNavigate, useParams } from "react-router-dom";
 // @mui material components
 import Card from "@mui/material/Card";
 
@@ -20,6 +20,26 @@ function UploadImage() {
   const [avatar, setAvatar] = useState("")
   const [registerdUser, setRegisterdUser] = useState({});
   const [errors, setErrors] = useState(undefined);
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8000/api/users/registered", {
+  //       withCredentials: true,
+  //     })
+  //     .then((res) => {
+  //       setRegisterdUser(res.data.addedUser
+  //       );
+  //       console.log("this is who reg:", registerdUser);
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       // navigate("/");
+  //     });
+  // }, []);
+
 
   // request to add photo to specifec ninja
   const addPhoto = (e) => {
@@ -28,7 +48,7 @@ function UploadImage() {
     const formData = new FormData();
     console.log(avatar)
     formData.append("avatar", avatar);
-    formData.append("user_id", registerdUser._id);
+    formData.append("user_id", id);
 
     axios
     .post(`${process.env.REACT_APP_BASE_URL}/photo`, formData)

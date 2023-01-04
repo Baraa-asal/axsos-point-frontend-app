@@ -87,7 +87,6 @@ function Attendance() {
         else{
           isRequestSent = true;
           window.alert(`welcome ${person.name}`)
-          navigate("/")
         }})
       })
       if (!isRequestSent && detections.length>0 ){
@@ -107,7 +106,10 @@ function Attendance() {
         //faceapi.draw.drawfaceDescriptors(canvas, resizedDetections);
       }, 100)
     })
-  },[isRequestSent])
+    // return () => {
+    //   window.removeEventListener('play', video);
+    // };
+  },[])
 
   return (
     <DashboardLayout>

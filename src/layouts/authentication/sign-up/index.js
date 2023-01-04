@@ -28,13 +28,16 @@ function SignUp() {
       .post(`${process.env.REACT_APP_BASE_URL}/register`, formInfo, {
         withCredentials: true,
       })
-      .then((res) => console.log(res)).catch((e)=> {
+      .then((res) => {
+        navigate("/authentication/upload-image/"+res.data._id)
+        console.log(res)})
+      .catch((e)=> {
         if (e?.response?.data?.errors) {
+          console.log(e.response.data.errors)
         setErrors(e?.response?.data?.errors)
       } else {
-        navigate("/authentication/upload-image")
+        // navigate("/authentication/upload-image")
         console.log("hiii")
-        
       }
       
       });

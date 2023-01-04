@@ -76,6 +76,7 @@ export default function App() {
       }
 
       if (route.route) {
+        
         if (route.isProtected && !user?.token?.length) {
           return <Route exact path={route.route} element={<SignIn />} key={route.key} />;
         }

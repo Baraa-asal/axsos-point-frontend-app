@@ -1,23 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// react-router-dom components
-
-// @mui material components
 import Card from "@mui/material/Card";
-
-// Soft UI Dashboard React components
 import SoftBox from "components/SoftBox";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
-
-// Authentication layout components
 import BasicLayout from "layouts/authentication/components/BasicLayout";
-
-// Images
 import curved6 from "assets/images/curved-images/curved14.jpg";
 import SoftTypography from "components/SoftTypography";
 
+
 function SignUp() {
+  const navigate = useNavigate();
   const [formInfo, setFormInfo] = useState({
     firstName: "",
     lastName: "",
@@ -38,10 +32,9 @@ function SignUp() {
         if (e?.response?.data?.errors) {
         setErrors(e?.response?.data?.errors)
       } else {
-        console.log(e)
-        // if (keyPattern) {
-
-        // }
+        navigate("/authentication/upload-image")
+        console.log("hiii")
+        
       }
       
       });
@@ -108,6 +101,7 @@ function SignUp() {
           </SoftBox>
         </SoftBox>
       </Card>
+
     </BasicLayout>
   );
 }

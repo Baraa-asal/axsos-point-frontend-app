@@ -106,9 +106,18 @@ function Attendance() {
         //faceapi.draw.drawfaceDescriptors(canvas, resizedDetections);
       }, 100)
     })
-    // return () => {
-    //   window.removeEventListener('play', video);
-    // };
+    return () => {
+      video.pause();
+      video.srcObject.getTracks().forEach(function(track) {
+        track.stop();
+      });
+      // navigator.getUserMedia(
+      //   { video: {} },
+      //   stream => {stream.stop()},
+      //   err => console.error(err)
+      // )
+      window.removeEventListener('play', video);
+    };
   },[])
 
   return (

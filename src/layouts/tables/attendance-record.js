@@ -25,7 +25,7 @@ function AttendanceRecord() {
       let dateMap = {};
       let usersMap = {};
       res.data.map((attendace) => {
-        if (dateMap[attendace.user_id._id]) {
+        if (dateMap[attendace?.user_id?._id]) {
           dateMap[attendace.user_id._id].push(attendace.createdAt);
         } else {
           dateMap[attendace.user_id._id] = [attendace.createdAt];
